@@ -35,19 +35,17 @@ I took 600 users out of the 6040 users as testset.
 
 The implementation closely follows [this](https://analyticsindiamag.com/singular-value-decomposition-svd-application-recommender-system/) tutorial. I made some changes to improve the performance of the model as well as to quantify the accuracy. 
 
-The rating matrix is first filled with user-median rating for each user. Then the rating matrix is normalized before the SVD is applied.
+The rating matrix is first filled with user-median ratings for each user. Then the rating matrix is normalized before the SVD is applied.
 
-First define a accuracy metric where:
+First define an accuracy metric where:
 
 For each user in the test set, given a movie that a user rated highest as input to the model, the model outputs movies that are similar to the one the user likes.
 
-accuracy =1 if model recomended a movie that user rated higher than the user's median score
-accuracy = 0 if model recomended a movie that user rated lower than the user's median score
+accuracy =1 if the model recommended a movie that the user rated higher than the user's median score accuracy = 0 if the model recommended a movie that the user rated lower than the user's median score
 
-The user is not considered if the model's recomended movies are not rated by the user. So we can not evaluate the model's performance for this user .
+The user is not considered if the model's recommended movies are not rated by the user. So we can not evaluate the model's performance for this user.
 
-
-The models are trained by tuning the number of principle components.
+The models are trained by tuning the number of principal components.
 
 
 ## compuation time
@@ -126,4 +124,4 @@ The testset contains a list of users. My way of evaluating accuracy requires the
 
 ## Analysis of Results
 
-The model-based approach is very efficient for large dataset. For this dataset with 1M entries. After training the SVD based model, the only important information are stored in the first few principal components (In my case, first 5-10 principal components), this sufficiently reduces the dimentionality of the problem, wheras the memory-based approach does not scale well as the data gets large. 
+The model-based approach is very efficient for large datasets. For this dataset with 1M entries. After training the SVD based model, the only important information is stored in the first few principal components (In my case, the first 5-10 principal components), this sufficiently reduces the dimensionality of the problem, whereas the memory-based approach does not scale well as the data gets large. 
